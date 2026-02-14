@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى زنوبتي</title>
+    <style>
+        body { margin: 0; padding: 0; background: radial-gradient(circle, #4a0404 0%, #000000 100%); height: 100vh; display: flex; justify-content: center; align-items: center; color: white; font-family: 'Arial', sans-serif; overflow: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border-radius: 25px; border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; width: 85%; max-width: 350px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #lock-screen { position: fixed; inset: 0; background: #1a0202; z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .heart-lock { font-size: 80px; color: #ff3366; margin-bottom: 20px; animation: beat 1.2s infinite; }
+        input { padding: 12px; border-radius: 10px; border: 1px solid #ff3366; background: transparent; color: white; text-align: center; width: 150px; margin-bottom: 15px; outline: none; }
+        .btn { background: linear-gradient(45deg, #4a0404, #ff3366); border: none; padding: 12px 35px; border-radius: 25px; color: white; font-weight: bold; cursor: pointer; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
+        .box { background: rgba(255, 51, 102, 0.1); padding: 12px; border-radius: 15px; border: 1px solid rgba(255, 51, 102, 0.3); }
+        .num { font-size: 22px; font-weight: bold; color: #ff3366; display: block; }
+        .txt { font-size: 12px; color: #ccc; }
+        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .main-img { width: 100%; border-radius: 15px; border: 1px solid #ff3366; margin: 10px 0; display: block; }
+        #main-site { display: none; }
+    </style>
+</head>
+<body>
+    <div id="lock-screen">
+        <div class="heart-lock">❤️</div>
+        <p>أدخلي كلمة السر الخاصة بنا</p>
+        <input type="password" id="pass" placeholder="Password">
+        <button class="btn" onclick="unlock()">دخول 🔓</button>
+    </div>
+    <div class="glass" id="main-site">
+        <h2 style="margin: 0; font-size: 20px;">أنتِ أول حب.. ❤️</h2>
+        <img src="https://files.catbox.moe/g2f741.jpg" class="main-img">
+        <p style="font-size: 14px;">بقالنا قد إيه سوا؟</p>
+        <div class="grid">
+            <div class="box"><span class="num" id="d">0</span><span class="txt">يوم</span></div>
+            <div class="box"><span class="num" id="h">0</span><span class="txt">ساعة</span></div>
+            <div class="box"><span class="num" id="m">0</span><span class="txt">دقيقة</span></div>
+            <div class="box"><span class="num" id="s">0</span><span class="txt">ثانية</span></div>
+        </div>
+        <p style="font-size: 16px; font-weight: bold; color: #ff3366;">اموت عليج زنوبتي يا امي وابوي انتِ</p>
+        <div style="font-size: 12px; color: #aaa;">كلي حنية من 2021/1/18 💖</div>
+        <audio id="bg-music" loop>
+            <source src="https://files.catbox.moe/p9x6x8.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <script>
+        function unlock() {
+            if(document.getElementById('pass').value === "08255") {
+                document.getElementById('lock-screen').style.display = 'none';
+                document.getElementById('main-site').style.display = 'block';
+                var audio = document.getElementById('bg-music');
+                audio.play().catch(e => console.log("Audio play failed: ", e));
+                startTimer();
+            } else { alert("الباسورد خطأ يا قمر!"); }
+        }
+        function startTimer() {
+            const start = new Date("2021-01-18T00:00:00");
+            setInterval(() => {
+                const diff = new Date() - start;
+                document.getElementById('d').innerText = Math.floor(diff / 86400000);
+                document.getElementById('h').innerText = Math.floor((diff / 3600000) % 24);
+                document.getElementById('m').innerText = Math.floor((diff / 60000) % 60);
+                document.getElementById('s').innerText = Math.floor((diff / 1000) % 60);
+            }, 1000);
+        }
+    </script>
+</body>
+          </html>
+          
