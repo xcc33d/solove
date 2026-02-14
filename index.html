@@ -25,38 +25,44 @@
         <div class="heart-lock">❤️</div>
         <p style="font-size: 18px;">أدخلي كلمة السر الخاصة بنا</p>
         <input type="password" id="pass" placeholder="Password">
-        <button class="btn" onclick="unlock()">دخول 🔓</button>
+        <button class="btn" id="entry-btn" onclick="unlock()">دخول 🔓</button>
     </div>
 
     <div class="glass" id="main-site">
         <h2 style="margin: 0; font-size: 18px;">أنتِ أول حب.. ❤️</h2>
-        
         <img src="IMG_20260214_152709_353.webp" class="main-img">
-        
         <p style="font-size: 14px; margin: 5px 0;">بقالنا قد إيه سوا؟</p>
-        
         <div class="grid">
             <div class="box"><span class="num" id="d">0</span><span class="txt">يوم</span></div>
             <div class="box"><span class="num" id="h">0</span><span class="txt">ساعة</span></div>
             <div class="box"><span class="num" id="m">0</span><span class="txt">دقيقة</span></div>
             <div class="box"><span class="num" id="s">0</span><span class="txt">ثانية</span></div>
         </div>
-
         <p style="font-size: 16px; font-weight: bold; color: #ff3366; margin: 10px 0;">اموت عليج زنوبتي يا امي وابوي انتِ</p>
         <div style="font-size: 11px; color: #aaa;">كلي حنية من 2021/1/18 💖</div>
-
-        <audio id="bg-music" loop>
+        <audio id="bg-music" loop preload="auto">
             <source src="music.mp3" type="audio/mpeg">
         </audio>
     </div>
 
     <script>
         function unlock() {
-            if(document.getElementById('pass').value === "08255") {
+            var pass = document.getElementById('pass').value;
+            var audio = document.getElementById('bg-music');
+            
+            if(pass === "08255") {
+                // هذي أهم حركة: المتصفح الحين يعتبر "دخول" هو الإذن لتشغيل الصوت
+                audio.play().then(() => {
+                    console.log("الصوت شغال");
+                }).catch(err => {
+                    console.log("محاولة ثانية لتشغيل الصوت");
+                    // محاولة صامتة بالبداية إذا فشل الأول
+                    audio.muted = false;
+                    audio.play();
+                });
+
                 document.getElementById('lock-screen').style.display = 'none';
                 document.getElementById('main-site').style.display = 'block';
-                var audio = document.getElementById('bg-music');
-                audio.play().catch(e => console.log("Audio failed to play"));
                 startTimer();
             } else { 
                 alert("الباسورد خطأ يا قمر!"); 
