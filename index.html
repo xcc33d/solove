@@ -46,7 +46,7 @@
         <div style="font-size: 11px; color: #aaa;">كلي حنية من 2021/1/18 💖</div>
 
         <audio id="bg-music" loop>
-            <source src="https://www.mboxdrive.com/mohammed-abdul-jabbar-ant-awal-hab.mp3" type="audio/mpeg">
+            <source src="music.mp3" type="audio/mpeg">
         </audio>
     </div>
 
@@ -56,7 +56,7 @@
                 document.getElementById('lock-screen').style.display = 'none';
                 document.getElementById('main-site').style.display = 'block';
                 var audio = document.getElementById('bg-music');
-                audio.play().catch(e => console.log("Audio failed"));
+                audio.play().catch(e => console.log("Audio failed to play"));
                 startTimer();
             } else { 
                 alert("الباسورد خطأ يا قمر!"); 
